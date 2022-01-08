@@ -15,6 +15,7 @@ let keys = {};
 document.addEventListener('keydown', function (evt) {
 
     keys[evt.code] = true;
+    
 });
 
 document.addEventListener('keyup', function (evt) {
@@ -25,7 +26,7 @@ document.addEventListener('keyup', function (evt) {
 
 
 class Player {
-    constructor (x, y, w, h, c){
+    constructor(x, y, w, h, c) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -36,15 +37,17 @@ class Player {
         this.jumpForce = 15;
         this.originalHeight = h;
         this.grounded = false;
+        this.jumpTimer = 0;
     }
 
-    Animate (){ 
+    Animate() {
 
         // jump 
-        if (keys['Space'] || keys['KeyW']) {
+        if (keys['Space'] || keys['ArrowUp']) {
             this.Jump();
-            } else {
+        } else {
             this.jumpTimer = 0;
+        }
         // Gravity 
 
         if (this.y + this.height < canvas.height) {
@@ -59,15 +62,15 @@ class Player {
         this.draw();
     }
 
-    Draw () {
+    Draw() {
         ctx.beginPath();
         ctx.fillStyle = this.c;
-        ctx.fillRect(this.x, this.y,  this.w, this.h );
+        ctx.fillRect(this.x, this.y, this.w, this.h);
         ctx.closePath();
     }
 }
 
-function Start () {
+function Start() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -79,14 +82,13 @@ function Start () {
     score = 0;
     highscore = 0;
 
-    player  = new Player(25, canvas.height -150, 50, 50, '#eb1d1d');
+    player = new Player(25, canvas.height - 150, 50, 50, '#eb1d1d');
 
     requestAnimationFrame(Update);
-   
+
 }
 
-function Update ()
-{
+function Update() {
     requestAnimationFrame(Update);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
