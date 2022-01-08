@@ -21,6 +21,17 @@ class Player {
         this.dy = 0;
         this.jumpForce = 15;
         this.originalHeight = h;
+        this.grounded = false;
+    }
+
+    Animate (){
+
+        if (this.y + this.height < canvas.height) {
+            this.dy += gravity;
+            this.grounded = false;
+        }
+
+        this.draw();
     }
 
     Draw () {
@@ -57,6 +68,7 @@ function Update ()
     player.Draw();
     player.x++;
 }
+
 
 Start();
 
