@@ -17,6 +17,13 @@ document.addEventListener('keydown', function (evt) {
     keys[evt.code] = true;
 });
 
+document.addEventListener('keyup', function (evt) {
+
+    keys[evt.code] = false;
+
+});
+
+
 class Player {
     constructor (x, y, w, h, c){
         this.x = x;
@@ -32,6 +39,12 @@ class Player {
     }
 
     Animate (){ 
+
+        // jump 
+        if (keys['Space'] || keys['KeyW']) {
+            this.Jump();
+            } else {
+            this.jumpTimer = 0;
         // Gravity 
 
         if (this.y + this.height < canvas.height) {
