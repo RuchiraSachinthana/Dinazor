@@ -10,6 +10,13 @@ let obstacles;
 let gameSpeed;
 let keys = {};
 
+// Event Listeners
+
+document.addEventListener('keydown', function (evt) {
+
+    keys[evt.code] = true;
+});
+
 class Player {
     constructor (x, y, w, h, c){
         this.x = x;
@@ -24,7 +31,8 @@ class Player {
         this.grounded = false;
     }
 
-    Animate (){
+    Animate (){ 
+        // Gravity 
 
         if (this.y + this.height < canvas.height) {
             this.dy += gravity;
