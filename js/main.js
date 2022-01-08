@@ -29,6 +29,10 @@ class Player {
         if (this.y + this.height < canvas.height) {
             this.dy += gravity;
             this.grounded = false;
+        } else {
+            this.dy = 0;
+            this.grounded = true;
+            this.y = canvas.height - this.h;
         }
 
         this.draw();
