@@ -15,7 +15,7 @@ let keys = {};
 document.addEventListener('keydown', function (evt) {
 
     keys[evt.code] = true;
-    
+
 });
 
 document.addEventListener('keyup', function (evt) {
@@ -43,7 +43,7 @@ class Player {
     Animate() {
 
         // jump 
-        if (keys['Space'] || keys['ArrowUp']) {
+        if (keys['Space'] || keys['KeyW']) {
             this.Jump();
         } else {
             this.jumpTimer = 0;
@@ -59,7 +59,19 @@ class Player {
             this.y = canvas.height - this.h;
         }
 
-        this.draw();
+        this.y += this.dy;
+
+        this.Draw();
+    }
+
+    Jump() {
+        if (this.grounded && this.jumpTimer == 0) {
+        this.jumpTimer = 1;
+        this.dy = -this.jumpForce;
+        } else if (this.jumpTimer > 0 && this.jumpTimer < 15)  {
+            this.jumpTimer++;
+            this.dy = -this.jumpForce - (this.jumpTimer / 50);
+        }
     }
 
     Draw() {
@@ -67,7 +79,7 @@ class Player {
         ctx.fillStyle = this.c;
         ctx.fillRect(this.x, this.y, this.w, this.h);
         ctx.closePath();
-    }
+    } 
 }
 
 function Start() {
