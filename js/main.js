@@ -159,7 +159,7 @@ function Start() {
         highscore = localStorage.getItem('highscore');
     }
 
-    player = new Player(25, 0, 50, 50, '#FF5858');
+    player = new Player(25, 0, 50, 50, 'rgb(163, 6, 6)');
 
     scoreText = new Text("Score: " + score, 25, 25, "left", "#212121", "20");
     highscoreText = new Text("Highscore: " + highscore, canvas.width - 25, 25, "right", "#212121", "20");
